@@ -1,16 +1,29 @@
-import { HigherOrderType } from '@/src/types'
+import type { Metadata, ResolvingMetadata } from "next";
+import type { PagePropsType, Props } from "@/types";
 
-import { Inter } from 'next/font/google'
-import '@/styles/app.css'
+import { getMetadata } from "@/src/components/Page/queries";
+import { Inter } from "next/font/google";
+import "@/styles/app.css";
+import { getPath } from "@/utils";
+import App from "@/components/App";
 
-const inter = Inter({ subsets: ['latin'] })
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const [path, slug] = getPath();
+    return await getMetadata(slug);
+}
 
-export default function FrontRootLayout({
-  children,
-}: HigherOrderType) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  )
+const inter = Inter({ subsets: ["latin"] });
+
+export default function GenericRootLayout({ children }: PagePropsType) {
+    const [path, slug] = getPath();
+    return (
+        <body
+            className={`${inter.className} slug-${slug}`}
+        >
+            <App url={path}>{children}</App>
+        </body>
+    );
 }

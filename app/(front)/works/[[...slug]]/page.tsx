@@ -14,7 +14,7 @@ export async function generateMetadata(
             ? params.slug[0]
             : params.slug
         : "works";
-    return await getMetadata(slug, slug === 'works' ? 'page' : 'work');
+    return await getMetadata(slug, slug === "works" ? "page" : "work");
 }
 
 export default async function NextPage({ params, searchParams }: Props) {
