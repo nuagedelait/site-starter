@@ -1,4 +1,4 @@
-import { HigherOrderType } from "@/src/types";
+import { HigherOrderType } from "@/types";
 
 import "@/styles/studio.css";
 

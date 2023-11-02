@@ -1,11 +1,15 @@
 import { defineField } from 'sanity'
+import { SanityAsset } from '@sanity/image-url/lib/types/types'
 
 export interface DocumentType {
-    slug?: {
-        current?:string
+    id: string
+    slug: {
+        current?: string
     },
-    title?:string,
-    description?: string
+    title: string,
+    description: string
+    coverImage: SanityAsset
+    date: string,
 }
 
 export default [
@@ -23,11 +27,29 @@ export default [
     defineField({
         name: 'title',
         title: 'Title',
-        type: 'string'
+        type: 'string',
+        validation: (rule) => rule.required()
     }),
     defineField({
         name: 'description',
         title: 'Description',
-        type: 'string'
+        type: 'string',
+        validation: (rule) => rule.required()
+    }),
+    defineField({
+        name: 'date',
+        title: 'Date',
+        type: 'datetime',
+        initialValue: () => new Date().toISOString(),
+        validation: (rule) => rule.required()
+    }),
+    defineField({
+        name: 'coverImage',
+        title: 'Cover Image',
+        type: 'image',
+        options: {
+            hotspot: true,
+        },
+        validation: (rule) => rule.required()
     }),
 ]

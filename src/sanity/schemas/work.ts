@@ -2,17 +2,19 @@ import { RocketIcon } from '@sanity/icons'
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import document, { DocumentType } from './document'
-
-import clientType from './client'
+import { ClientType } from './client'
 import { SanityAsset } from '@sanity/image-url/lib/types/types'
 import { SanityReference } from '@sanity/client'
+import { SkillType } from './skill'
 
 export interface WorkType extends DocumentType {
-    content?:any[],
-    coverImage: SanityAsset,
-    date?:string,
-    client?: SanityReference,
-    gallery?: SanityAsset[]
+  notes?: any[],
+  client?: SanityReference | ClientType,
+  gallery?: SanityAsset[],
+  mission?: string,
+  skills?: SkillType[],
+  link?: string;
+  tasks?: string[]
 }
 
 export default defineType({
@@ -23,29 +25,46 @@ export default defineType({
   fields: [
     ...document,
     defineField({
-      name: 'content',
-      title: 'Content',
+      name: 'mission',
+      title: 'Mission',
+      type: 'string',
+    }),
+    defineField({
+      name: 'tasks',
+      title: 'Tasks',
+      type: 'array',
+      of: [
+        { type: 'string' }
+      ]
+    }),
+    defineField({
+      name: 'skills',
+      title: 'Skills',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'skill'}
+          ]
+        }
+      ]
+    }),
+    defineField({
+      name: 'notes',
+      title: 'Notes',
       type: 'textEditor',
     }),
     defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'date',
-      title: 'Date',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
+      name: 'link',
+      title: 'Link',
+      type: 'url',
     }),
     defineField({
       name: 'client',
       title: 'Client',
       type: 'reference',
-      to: [{ type: clientType.name }],
+      to: [{ type: 'client' }],
     }),
     defineField({
       name: 'gallery',

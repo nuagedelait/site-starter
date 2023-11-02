@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { defaultTitle, defaultDescription } from "@/src/config";
-import { readClient } from "@/src/sanity/client";
+import { defaultTitle, defaultDescription } from "@/config";
+import { readClient } from "@/sanity/client";
 
 const client = readClient()
 

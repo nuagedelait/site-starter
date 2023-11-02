@@ -1,6 +1,6 @@
 import { createClient, type ClientConfig, type SanityClient, type ClientPerspective } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
-import { sanity, sanityReadToken, sanityWriteToken } from '@/src/config'
+import { sanity, sanityReadToken, sanityWriteToken } from '@/config'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 export const readClient = (cdn: boolean = true, perspective: ClientPerspective = 'published'): SanityClient => {

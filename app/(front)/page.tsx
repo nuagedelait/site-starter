@@ -1,4 +1,4 @@
-import { Props } from "@/src/types";
+import { Props } from "@/types";
 import Page from "@/components/Page";
 import { getPath } from "@/utils";
 

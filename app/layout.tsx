@@ -1,6 +1,6 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import type { Props } from "@/types";
-import { getMetadata } from "@/src/components/Page/queries";
+import { getMetadata } from "@/components/Page/queries";
 
 import "@/styles/globals.css";
 

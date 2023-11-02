@@ -1,18 +1,16 @@
 import type { WorkType } from "@/sanity/schemas/work";
 
-import { readClient } from "@/sanity/client";
-
-const client = readClient()
+import { getDocument, getDocuments } from "../queries";
 
 export async function getWorks() {
-    return await client.fetch(`*[_type=="work"]{
-        "slug":slug.current,
-        title,
-        "image":coverImage,
-        date
-    }`);
+    return await getDocuments('work');
 }
 
 export async function getWork(slug: string): Promise<WorkType> {
-    return await client.fetch(`*[_type=="work" && slug.current=="${slug}"][0]`);
+
+    const transforms = `
+    "client":client->,
+    "skills":skills[]->`
+
+    return await getDocument('work', slug, transforms);
 }

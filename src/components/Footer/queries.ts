@@ -1,4 +1,4 @@
-import { readClient } from "@/src/sanity/client";
+import { readClient } from "@/sanity/client";
 
 const client = readClient()
 

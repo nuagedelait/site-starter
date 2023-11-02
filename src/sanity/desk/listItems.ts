@@ -1,6 +1,6 @@
 import { StructureBuilder } from 'sanity/desk';
 import schemas from '../schemas'
-import { sanity } from '@/src/config'
+import { sanity } from '@/config'
 
 export default function listItems(schemaNames: string[], S: StructureBuilder) {
     return schemaNames.map((schemaName: string) => {

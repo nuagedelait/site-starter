@@ -1,6 +1,13 @@
 import { DocumentIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
-import document from './document'
+import document, { DocumentType } from './document'
+
+export interface PageType extends DocumentType {
+    displayGutters?: boolean
+    displayTitle?: boolean
+    displayDescription?: boolean
+    sections?: any[]
+}
 
 export default defineType({
     name: 'page',
@@ -25,12 +32,6 @@ export default defineType({
             type: 'boolean'
         }),
         defineField({
-            name: 'picture',
-            title: 'Picture',
-            type: 'image',
-            options: { hotspot: true }
-        }),
-        defineField({
             name: 'sections',
             title: 'Sections',
             type: 'array',
@@ -46,9 +47,9 @@ export default defineType({
             title: 'slug.current',
             subtitle: 'title',
             media: 'picture'
-          },
-          prepare(selection) {
+        },
+        prepare(selection) {
             return selection
-          }
-      }
+        }
+    }
 })

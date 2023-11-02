@@ -1,9 +1,11 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import type { Props } from "@/src/types";
+import type { Props } from "@/types";
 
-import { getMetadata } from "@/src/components/Page/queries";
+import { getMetadata } from "@/components/Page/queries";
 import Page from "@/components/Page";
 import { Work, Works } from "@/components/Works";
+
+import "@/styles/works.css"
 
 export async function generateMetadata(
     { params, searchParams }: Props,
@@ -28,6 +30,7 @@ export default async function NextPage({ params, searchParams }: Props) {
         <Page
             slug={params.slug ? slug : `works`}
             type={params.slug ? "work" : "page"}
+            className={params.slug ? "document" : "grid"}
         >
             {params.slug ? <Work slug={slug}></Work> : <Works></Works>}
         </Page>

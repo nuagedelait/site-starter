@@ -1,5 +1,11 @@
 import { UserIcon } from '@sanity/icons'
+import { SanityAsset } from '@sanity/image-url/lib/types/types'
 import { defineField, defineType } from 'sanity'
+
+export interface AuthorType {
+  name?: string
+  picture?: SanityAsset
+}
 
 export default defineType({
   name: 'author',

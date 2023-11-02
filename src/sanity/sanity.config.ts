@@ -1,7 +1,7 @@
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import schemas from "./schemas"
-import { sanity } from '@/src/config'
+import { sanity } from '@/config'
 import { codeInput } from '@sanity/code-input'
 import structure from './desk'
 import { visionTool } from '@sanity/vision'

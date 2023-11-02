@@ -1,6 +1,5 @@
 import author from './author'
 import client from './client'
-import post from './post'
 import work from './work'
 import textEditor from './textEditor'
 import page from './page'
@@ -16,7 +15,6 @@ export default [
     header,
     author,
     client,
-    post,
     work,
     textEditor,
     page
