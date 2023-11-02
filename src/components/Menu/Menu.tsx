@@ -1,17 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { MenuIcon, CloseIcon } from "@sanity/icons";
+import { HigherOrderType } from "@/types";
+import { MenuIcon, CollapseIcon } from "../icons";
+import { MenuItemType } from "./MenuItem";
 
-import MenuItem, { MenuItemPropsType, MenuItemType } from "./MenuItem";
+import "@/styles/menu.css";
+import SubMenu from "./SubMenu";
 
-interface MenuPropsType {
+interface MenuPropsType extends HigherOrderType {
     data?: {
         items?: Array<MenuItemType>;
     };
+    popinMode?: boolean;
 }
 
-export default function Menu({ data }: MenuPropsType) {
+export default function Menu({
+    data,
+    children,
+    className,
+    popinMode,
+}: MenuPropsType) {
     const [isOpen, setIsOpen] = useState(false);
 
     if (!data) {
@@ -21,17 +30,53 @@ export default function Menu({ data }: MenuPropsType) {
         return <></>;
     }
 
+    const iconsClass = "w-12 h-12 stroke-2";
+
+    const submenu = data && data.items && (
+        <SubMenu
+            items={data.items}
+            onClick={() => {
+                setIsOpen(false);
+            }}
+            level={1}
+        ></SubMenu>
+    );
+
     return (
-        <div>
-            <div onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? <CloseIcon /> : <MenuIcon />}
-            </div>
-            {isOpen && (
-                <ul>
-                    {data.items.map((item: MenuItemType) => (
-                        <MenuItem item={item}></MenuItem>
-                    ))}
-                </ul>
+        <div
+            className={`menu state-${isOpen ? "open" : "closed"} ${className}`}
+        >
+            {!popinMode && (
+                <div
+                    className={`submenu-level-0`}
+                >
+                    {submenu}
+                    {children}
+                </div>
+            )}
+            {popinMode && isOpen && (
+                <div
+                    className={`popin ${
+                        isOpen ? "pointer-events-auto" : "pointer-events-none"
+                    }`}
+                >
+                    <div className="content">
+                        {submenu}
+                        {children}
+                    </div>
+                </div>
+            )}
+            {popinMode && (
+                <div
+                    className="bg-transparent cursor-pointer z-20"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? (
+                        <CollapseIcon className={iconsClass} />
+                    ) : (
+                        <MenuIcon className={iconsClass} />
+                    )}
+                </div>
             )}
         </div>
     );

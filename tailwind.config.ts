@@ -1,18 +1,31 @@
 import type { Config } from 'tailwindcss'
+const headerSize = 100;
 
 const config: Config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontSize: {
+        '8xl': '5.5rem'
       },
+      height: {
+        'head': `${headerSize}px`,
+        'head-mobile': `${headerSize-20}px`
+      },
+      maxHeight: {
+        'head': `${headerSize}px`,
+        'head-mobile': `${headerSize-20}px`
+      },
+      padding: {
+        'head': `${headerSize}px`,
+        'head-mobile': `${headerSize-20}px`
+      },
+      lineHeight: {
+        'menu': '5rem'
+      }
     },
   },
   plugins: [],

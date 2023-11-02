@@ -6,15 +6,16 @@ export interface AppPropsType extends HigherOrderType {
     url: string[];
 }
 
-export interface AppSectionType {
+export interface AppSectionPropsType extends HigherOrderType {
     url: string[];
 }
 
 export default ({ children, url }: AppPropsType) => {
+
     return (
         <>
             <Header url={url} />
-            <main className={`main-${url.length > 0 ? url.join("-") : "home"}`}>
+            <main className={`main ${url.length > 0 ? url.join("-") : "home"}`}>
                 {children}
             </main>
             <Footer url={url} />

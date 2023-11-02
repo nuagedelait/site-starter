@@ -1,0 +1,44 @@
+.menu.main .popin {
+    @apply fixed top-0 left-0 flex flex-col pt-head-mobile sm:pt-head w-full h-full;
+}
+
+.menu.main .popin .content {
+    @apply w-full h-full bg-white flex flex-col sm:flex-row justify-evenly items-center;
+}
+
+.menu.main .popin ul {
+    @apply py-6 flex flex-col justify-evenly sm:max-h-[80%];
+}
+
+.menu a {
+    @apply no-underline;
+}
+
+.menu.main .menu-item {
+    @apply text-8xl font-bold text-center leading-menu tracking-tighter sm:tracking-normal sm:py-4;
+}
+
+.submenu.level-0 {
+    @apply w-full;
+}
+
+.submenu.level-1 {
+    @apply flex justify-start align-top;
+}
+
+footer .submenu.level-1 > li {
+    @apply mr-16 pl-8 border-l-2 block pt-8;
+}
+
+.menu:not(.main) .submenu.level-1 > li > a {
+    @apply inline-block font-bold mb-8 uppercase tracking-widest text-xs;
+}
+.menu:not(.main) .submenu.level-2 a {
+    @apply inline-block font-light uppercase tracking-widest text-xs mb-4;
+}
+
+.menu:not(.main),
+.menu:not(.main) .submenu-level-0,
+.menu:not(.main) .submenu.level-1 {
+    @apply h-full;
+}

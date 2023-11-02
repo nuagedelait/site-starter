@@ -1,0 +1,28 @@
+h1 {
+    @apply relative text-6xl font-bold py-4;
+}
+
+h2 {
+    @apply relative text-3xl font-bold py-2;
+}
+
+h3 {
+    @apply relative text-sm uppercase font-black pt-2 pb-1;
+}
+
+h4 {
+    @apply relative font-bold py-2;
+}
+
+h4 .underline {
+    @apply -translate-y-[.75em] -z-10 h-[.4em];
+}
+
+a {
+    @apply underline;
+}
+
+pre {
+    @apply w-full;
+    overflow: scroll;
+}
